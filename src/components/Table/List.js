@@ -89,7 +89,7 @@ export default function StickyHeadTable() {
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
+                  {columns.filter(c => c.id !== 'acciones').map((column) => {
                     const value = row[column.id];
                     return (
                       <TableCell key={column.id} align={column.align}>
@@ -97,6 +97,9 @@ export default function StickyHeadTable() {
                       </TableCell>
                     );
                   })}
+                  <TableCell>
+                    <p>sdasdasd</p>
+                  </TableCell>
                 </TableRow>
               );
             })}
