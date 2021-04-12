@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Logo from '../../assets/Logo.png';
 import Barcode from '../../assets/barcode.png';
+import Button from '@material-ui/core/Button';
 import './Login.scss';
 
 const Login = () => {
@@ -27,7 +28,7 @@ const Login = () => {
                                 <input class="input" type="password" name="contraseña" id="contraseña" placeholder="Ingrese su contraseña" required minlength="8" />
                             </form>
                         </section>
-                        <Link to="/lista" className="button">Iniciar sesión</Link>
+                        <Link to="/lista" className="link"><Button className="button">Iniciar sesión</Button></Link>
                     </div>
                     <p className="footer">© 2021 - VOLT motors</p>
                 </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,14 +8,18 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Checkbox from '@material-ui/core/Checkbox';
+import CreateIcon from '@material-ui/icons/Create';
+import Delete from './Delete/Delete';
+import AddOrder from './Add/AddOrder';
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 10, align: 'right' },
   { id: 'area', label: 'AREA', minWidth: 100 },
   { id: 'solicitante', label: 'SOLICITANTE', minWidth: 150 },
   { id: 'fecha', label: 'FECHA', minWidth: 80, align: 'center' },
-  { id: 'descripciondelpedido', label: 'DESCRIPCION DEL PEDIDO', minWidth: 200 },
-  { id: 'cantidad', label: 'CANTIDAD', minWidth: 80, align: 'right' },
+  { id: 'descripciondelpedido', label: 'DESCRIPCION DEL PEDIDO', minWidth: 400 },
+  { id: 'cantidad', label: 'CANTIDAD', minWidth: 10, align: 'right' },
   { id: 'fechadenecesidad', label: 'FECHA DE NECESIDAD', minWidth: 170, align: 'center' },
   { id: 'proveedor', label: 'PROVEEDOR', minWidth: 100 },
   { id: 'recepcion', label: 'RECEPCION', minWidth: 100, align: 'center' },
@@ -68,8 +72,23 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
+  const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
   return (
     <Paper className={classes.root}>
+      <AddOrder 
+        title={"Editar pedido"}
+        handleClose={handleClose}
+        open={open}
+        solicitante={""} />
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -78,7 +97,7 @@ export default function StickyHeadTable() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ width: column.minWidth }}
                 >
                   {column.label}
                 </TableCell>
@@ -97,8 +116,13 @@ export default function StickyHeadTable() {
                       </TableCell>
                     );
                   })}
-                  <TableCell>
-                    <p>sdasdasd</p>
+                  <TableCell style={{ textAlign: 'center', display: 'flex', alignItems: 'center'}}>
+                  <Checkbox
+                    color="primary"
+                    inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  />
+                  <CreateIcon onClick={handleClickOpen}/>
+                  <Delete />
                   </TableCell>
                 </TableRow>
               );
@@ -114,6 +138,12 @@ export default function StickyHeadTable() {
         page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
+        labelRowsPerPage="Filas por página"
+        labelDisplayedRows={
+          ({ from, to, count }) => {
+            return '' + from + '-' + to + ' de ' + count
+          }
+        }
       />
     </Paper>
   );

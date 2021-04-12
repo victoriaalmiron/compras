@@ -4,33 +4,18 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import InputLabel from '@material-ui/core/InputLabel';
 import Select from '../Add/Select/Select';
-//import Select from '@material-ui/core/Select';
+import Date from './Date/Date';
 import './AddOrder.scss';
 
-export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+export default function FormDialog(props) {
+  const [solicitante, setSolicitante] = React.useState(props.solicitante);
 
   return (
     <div>
-      <Button className="header-button" variant="outlined" color="primary" onClick={handleClickOpen}>
-      <FontAwesomeIcon icon={faPlusCircle} className="button-icon" />NUEVO PEDIDO
-      </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Nuevo pedido</DialogTitle>
+      <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
           <Select></Select>
           <TextField
@@ -40,15 +25,10 @@ export default function FormDialog() {
             label="Solicitante"
             type="text"
             fullWidth
+            value={solicitante}
+            onChange={e => setSolicitante(e.target.value)}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Fecha"
-            type="text"
-            fullWidth
-          />
+          <Date title="Fecha" />
           <TextField
             autoFocus
             margin="dense"
@@ -65,14 +45,7 @@ export default function FormDialog() {
             type="text"
             fullWidth
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Fecha de necesidad"
-            type="text"
-            fullWidth
-          />
+          <Date title="Fecha de necesidad" />
           <TextField
             autoFocus
             margin="dense"
@@ -91,10 +64,10 @@ export default function FormDialog() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={props.handleClose} color="primary">
             CANCELAR
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={props.handleClose} color="primary">
             AGREGAR PEDIDO
           </Button>
         </DialogActions>
