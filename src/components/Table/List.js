@@ -18,7 +18,7 @@ const columns = [
   { id: 'area', label: 'AREA', minWidth: 100 },
   { id: 'solicitante', label: 'SOLICITANTE', minWidth: 150 },
   { id: 'fecha', label: 'FECHA', minWidth: 80, align: 'center' },
-  { id: 'descripciondelpedido', label: 'DESCRIPCION DEL PEDIDO', minWidth: 400 },
+  { id: 'descripciondelpedido', label: 'DESCRIPCION DEL PEDIDO', minWidth: 400, align: 'center' },
   { id: 'cantidad', label: 'CANTIDAD', minWidth: 10, align: 'right' },
   { id: 'fechadenecesidad', label: 'FECHA DE NECESIDAD', minWidth: 170, align: 'center' },
   { id: 'proveedor', label: 'PROVEEDOR', minWidth: 100 },
@@ -116,7 +116,7 @@ export default function StickyHeadTable() {
                       </TableCell>
                     );
                   })}
-                  <TableCell style={{ textAlign: 'center', display: 'flex', alignItems: 'center'}}>
+                  <TableCell style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                   <Checkbox
                     color="primary"
                     inputProps={{ 'aria-label': 'secondary checkbox' }}

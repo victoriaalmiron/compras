@@ -14,54 +14,62 @@ export default function FormDialog(props) {
 
   return (
     <div>
-      <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title" maxWidth="xl">
       <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
-          <Select></Select>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Solicitante"
-            type="text"
-            fullWidth
-            value={solicitante}
-            onChange={e => setSolicitante(e.target.value)}
-          />
-          <Date title="Fecha" />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Descripción del pedido"
-            type="text"
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Cantidad"
-            type="text"
-            fullWidth
-          />
-          <Date title="Fecha de necesidad" />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Proveedor"
-            type="text"
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Control de calidad"
-            type="text"
-            fullWidth
-          />
+          <div className="container">
+            <Select></Select>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Solicitante"
+              type="text"
+              fullWidth
+              value={solicitante}
+              onChange={e => setSolicitante(e.target.value)}
+            />
+          </div>
+          <div className="container">
+            <Date title="Fecha" />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Descripción del pedido"
+              type="text"
+              fullWidth
+            />
+          </div>
+          <div className="container">
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Cantidad"
+              type="text"
+              fullWidth
+            />
+            <Date title="Fecha de necesidad" />
+          </div>
+          <div className="container">
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Proveedor"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Control de calidad"
+              type="text"
+              fullWidth
+            />
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={props.handleClose} color="primary">

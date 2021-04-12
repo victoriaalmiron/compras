@@ -18,11 +18,19 @@
     }
 }
 
+.MuiDialogContent-root {
+    width: 1000px;
+}
+.container {
+    display: flex;
+    width: 1500;
+    height: 150px;
+} 
+
 #form-dialog-title {
     background-color: #0070B1;
     color: white;
     h2 {
         font-weight: 600;
     }
-   
 }
